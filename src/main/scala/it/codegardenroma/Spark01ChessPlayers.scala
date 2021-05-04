@@ -3,7 +3,7 @@ package it.codegardenroma
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.DataFrame
 
-object Spark01HelloWorld{
+object Spark01ChessPlayers{
 
     val bestPlayers = List(
         ChessPlayer("Magnus Carlsen", 2847),
@@ -12,9 +12,9 @@ object Spark01HelloWorld{
     )
 
     def main(args: Array[String]) = {
-        val spark = SparkSession
+        val spark: SparkSession = SparkSession
             .builder()
-            .appName("SparkHelloWorld")
+            .appName("Spark01ChessPlayers")
             .config("spark.master", "local")
             .getOrCreate()
 
