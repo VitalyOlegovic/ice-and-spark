@@ -7,7 +7,7 @@ object Spark11Characters{
     def main(args: Array[String]) = {
         val spark: SparkSession = SparkSession
             .builder()
-            .appName("Spark01ChessPlayers")
+            .appName(this.getClass().toString())
             .config("spark.master", "local")
             .getOrCreate()
 
