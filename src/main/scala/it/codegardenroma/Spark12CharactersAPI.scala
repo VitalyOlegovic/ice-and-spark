@@ -17,14 +17,20 @@ object Spark12CharactersAPI{
 
         val filteredCharacters = charactersDF
             .select(col("name"),col("born"),col("died"))
-            .filter(col("name").isNotNull && col("name") =!= "" && col("born") =!= "")
+            .filter(
+                col("name").isNotNull 
+                && col("name") =!= "" 
+                && col("born") =!= "")
+        filteredCharacters.write.json("target/characters/json1")
 
         val filteredCharacters2 = charactersDF
             .select( $"name", $"born", $"died" )
-            .filter( $"name".isNotNull && $"name" =!= "" && $"born" =!= "")
-
-        //val fieldsDF = spark.sql("select name, born, died from characters where name is not null and name!='' and born != ''")
-        //fieldsDF.show(5)
-        //fieldsDF.write.csv("target/characters/csv")
+            .filter( 
+              $"name".isNotNull 
+              && $"name" =!= "" 
+              && $"born" =!= "")
+        filteredCharacters2.write.json("target/characters/json2")
+        
+        spark.stop()
     }
 }

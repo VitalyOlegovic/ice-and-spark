@@ -15,8 +15,13 @@ object Spark11Characters{
 
         val charactersDF = spark.read.json("src/main/resources/characters.json")
         charactersDF.createTempView("characters")
-        val fieldsDF = spark.sql("select name, born, died from characters where name is not null and name!='' and born != ''")
+        val fieldsDF = spark.sql(
+            """select name, born, died 
+            from characters 
+            where name is not null and name!='' and born != ''""")
         fieldsDF.show(5)
         fieldsDF.write.csv("target/characters/csv")
+
+        spark.stop()
     }
 }
